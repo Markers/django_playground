@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-    <h2>템플릿 입니다</h2>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" name="text">
+        <button class="btn btn-primary">POST</button>
+    </form>
+    <h2>{{post}}</h2>
 {% endblock %}
