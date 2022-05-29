@@ -47,3 +47,26 @@ def signup3(request):
             return redirect(request, 'signup2.html')
     context = {'form': form}
     return render(request, 'signup2.html', context)
+
+
+def login(request):
+    if request.method == "POST":
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            auth.login(request, user)
+            return redirect('home')
+        else:
+            return render(request, 'login.html', {'error': 'username or password is incorrect'})
+    else:
+        return render(request, 'login.html')
+
+
+def logout(request):
+    auth.logout(request)
+    return redirect('home')
+
+
+def home(request):
+    return render(request, 'home.html')

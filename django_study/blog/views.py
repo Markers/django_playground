@@ -23,12 +23,12 @@ def board(request):
     if request.method == 'POST':
         title = request.POST['title']
         content = request.POST['content']
-        writer = request.POST['writer']
+        user = request.user
 
         board = Board(
             title=title,
             content=content,
-            writer=writer,
+            user=user,
         )
 
         board.save()
@@ -47,9 +47,9 @@ def board(request):
 def boardEdit(request, pk):
     board = Board.objects.get(id=pk)
     if request.method == 'POST':
-        title = request.POST['title']
-        content = request.POST['content']
-        writer = request.POST['writer']
+        board.title = request.POST['title']
+        board.content = request.POST['content']
+        board.user = request.user
 
         board.save()
         return redirect('board')
