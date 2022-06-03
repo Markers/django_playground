@@ -63,3 +63,5 @@ def boardDelete(request, pk):
     board = Board.objects.get(id=pk)
     board.delete()
     return redirect('board')
+
+
