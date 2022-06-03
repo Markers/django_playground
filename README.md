@@ -1,2 +1,2 @@
 # django_playground
-django test repo
+CP2
